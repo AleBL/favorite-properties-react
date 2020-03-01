@@ -1,18 +1,6 @@
 import React, { Component } from "react"
 import FavoriteProperties from "./FavoriteProperties.js"
-
-const baseApiPath = "https://www.orulo.com.br/api/v2/buildings/";
-const bearerToken = "<ADD BEARER TOKEN HERE>;
-
-const request_promise = require('request-promise');
-const requestParams = {
-  uri: baseApiPath,
-  headers: {
-    "Authorization": "Bearer " + bearerToken,
-    "Accept": "application/json"
-  },
-  json: true
-};
+import requestPage from "../util/apiConnection"
 
 class FavoritePropertiesContainer extends Component {
   constructor(props) {
@@ -28,22 +16,26 @@ class FavoritePropertiesContainer extends Component {
   }
   
   componentWillMount() {
+    this.loadPage();
+  }
+
+  loadPage = (page = 1) => {
     let currentComponent = this;
 
-    request_promise(requestParams)
-      .then(function (result) {
-        const newState = {
-          properties: result.buildings,
-          page_atual: result.page,
-          total_pages: result.total_pages,
-        };
-        currentComponent.setState(newState);
-
-      })
-      .catch(function (err) {
-        console.log("Erro");
-        console.log(err);
-      });
+    requestPage(page)
+    .then(function (result) {
+      const newState = {
+        properties: result.buildings,
+        page_atual: result.page,
+        total_pages: result.total_pages
+      };
+      
+      currentComponent.setState(newState);
+    })
+    .catch(function (err) {
+      console.log("Erro");
+      console.log(err);
+    });
   }
 
   addToFavorites = (propertie) => {
