@@ -1,5 +1,6 @@
-import React, { Component } from "react"
+import React, { Component, Fragment } from "react"
 import FavoriteProperties from "./FavoriteProperties.js"
+import Pagination from "./Pagination.js"
 import requestPage from "../util/apiConnection"
 
 class FavoritePropertiesContainer extends Component {
@@ -61,9 +62,17 @@ class FavoritePropertiesContainer extends Component {
 
   render(){
     return (
-      <FavoriteProperties 
-        properties={ this.state.properties }
-        addToFavorites={ this.addToFavorites } />
+      <Fragment>
+        <FavoriteProperties 
+          properties={ this.state.properties }
+          addToFavorites={ this.addToFavorites } />
+
+        <Pagination
+          currentPage={ this.state.page_atual }
+          totalPages={ this.state.total_pages }
+          loadPage={ this.loadPage }
+        />
+      </Fragment>
     );
   }
 }
