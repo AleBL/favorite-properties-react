@@ -9,11 +9,10 @@ class FavoritePropertiesContainer extends Component {
 
     this.state = {
       properties: [],
-      page_atual: 0,
+      current_page: 0,
       total_pages: 0,
       favorites: []
     };
-
   }
   
   componentWillMount() {
@@ -27,7 +26,7 @@ class FavoritePropertiesContainer extends Component {
     .then(function (result) {
       const newState = {
         properties: result.buildings,
-        page_atual: result.page,
+        current_page: result.page,
         total_pages: result.total_pages
       };
       
@@ -68,7 +67,7 @@ class FavoritePropertiesContainer extends Component {
           addToFavorites={ this.addToFavorites } />
 
         <Pagination
-          currentPage={ this.state.page_atual }
+          currentPage={ this.state.current_page }
           totalPages={ this.state.total_pages }
           loadPage={ this.loadPage }
         />
