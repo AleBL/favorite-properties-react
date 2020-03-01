@@ -1,9 +1,9 @@
-.buildings {
+.properties {
   display: inline-grid; 
   width: 230px;
   border-style: solid;
   border-color: #9eecff;
-  height: 250px;
+  height: 260px;
   margin: 5px;
   background-color: #e6faff;
 }
@@ -85,6 +85,8 @@ li:hover ul#submenu {
   border: 1px solid transparent;
   color: #fff;
   padding: 6px 10px;
+
+  margin: auto;
 }
 
 .btn-primary {
