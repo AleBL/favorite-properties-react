@@ -3,6 +3,7 @@ import FavoriteProperties from "./FavoriteProperties.js"
 import Pagination from "./Pagination.js"
 import requestPage from "../util/apiConnection"
 
+
 class FavoritePropertiesContainer extends Component {
   constructor(props) {
     super(props);
@@ -15,12 +16,13 @@ class FavoritePropertiesContainer extends Component {
     };
   }
   
-  componentWillMount() {
+  componentDidMount() {
     this.loadPage();
   }
 
   loadPage = (page = 1) => {
     let currentComponent = this;
+    let loadFavorites = this.loadFavorites;
 
     requestPage(page)
     .then(function (result) {
@@ -31,32 +33,55 @@ class FavoritePropertiesContainer extends Component {
       };
       
       currentComponent.setState(newState);
+
+      loadFavorites();
     })
     .catch(function (err) {
       console.log("Erro");
       console.log(err);
     });
+  }
 
-    let favorites = JSON.parse(localStorage.getItem('favorites'));
+  loadFavorites = () => {
+    const favorites = JSON.parse(localStorage.getItem('favorites'));
 
     if (Array.isArray(favorites)) {
       const newState = { favorites: favorites };
-      currentComponent.setState(newState);
+      this.setState(newState);
     }
+
+    this.verifyFavorites();
   }
 
-  addToFavorites = (propertie) => {
+  verifyFavorites = () => {
+    let { properties } = Object.assign(this.state);
+    let { favorites } = Object.assign(this.state);
+
+    properties.forEach(function myFunction(property) {
+      const [item, ...rest] = favorites.filter(item => item.id === property.id);
+
+      const index = properties.indexOf(property);
+      properties[index].favorite = item ? true : false;
+    });
+
+    const newState = { properties: properties };
+    this.setState(newState);
+  }
+
+  addToFavorites = (property) => {
     const { favorites } = Object.assign(this.state);
-    const favoriteFound = favorites.some(item => item.id === propertie.id);
+    const favoriteFound = favorites.some(item => item.id === property.id);
 
     if (!favoriteFound) {
-      favorites.push(propertie);
+      favorites.push(property);
     }
 
     localStorage.setItem('favorites', JSON.stringify(favorites));
     
     const newState = { favorites: favorites };
     this.setState(newState);
+
+    this.verifyFavorites();
   }
 
   render(){
