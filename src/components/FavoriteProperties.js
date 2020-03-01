@@ -1,10 +1,10 @@
 import React, { Fragment } from "react"
-import PropertieList from "./PropertieList"
+import PropertyList from "./PropertyList"
 
 const FavoriteProperties = (props) => {
   return (
     <Fragment>
-      <PropertieList
+      <PropertyList
         properties={ props.properties }
         addToFavorites={ props.addToFavorites } />
     </Fragment>
