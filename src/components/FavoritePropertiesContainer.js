@@ -36,6 +36,13 @@ class FavoritePropertiesContainer extends Component {
       console.log("Erro");
       console.log(err);
     });
+
+    let favorites = JSON.parse(localStorage.getItem('favorites'));
+
+    if (Array.isArray(favorites)) {
+      const newState = { favorites: favorites };
+      currentComponent.setState(newState);
+    }
   }
 
   addToFavorites = (propertie) => {
