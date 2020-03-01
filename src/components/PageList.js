@@ -8,9 +8,9 @@ class PageList extends Component {
         <div className='pagination'>
           {
             [...Array(this.props.totalPages).keys()].map(number => (
-              <Page 
+              <Page  
+                key={ "page-" + number }
                 pageNumber={ number }
-                symbolPage={ number + 1 }
                 currentPage={ this.props.currentPage }
                 totalPages={ this.props.totalPages }
                 loadPage={ this.props.loadPage }/>
