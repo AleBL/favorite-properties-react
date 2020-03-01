@@ -1,0 +1,98 @@
+.buildings {
+  display: inline-grid; 
+  width: 230px;
+  border-style: solid;
+  border-color: #9eecff;
+  height: 250px;
+  margin: 5px;
+  background-color: #e6faff;
+}
+
+.dropdownmenu {
+  display: flow-root;
+  background: #30A6E6;
+}
+
+.dropdownmenu ul, .dropdownmenu li {
+  margin: 0;
+  padding: 0;
+}
+
+.dropdownmenu ul {
+  background: gray;
+  list-style: none;
+  width: 100%;
+}
+
+.dropdownmenu li {
+  float: left;
+  position: relative;
+  width: auto;
+  float: right;
+}
+
+.dropdownmenu a {
+  color: #FFFFFF;
+  width: 200px;
+  display: block;
+  font: bold 12px/20px sans-serif;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -ms-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
+}
+
+.dropdownmenu li:hover a {
+  background: #000000;
+}
+
+#submenu {
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 35px;
+  visibility: hidden;
+  z-index: 1;
+}
+
+li:hover ul#submenu {
+  opacity: 1;
+  top: 40px;
+  visibility: visible;
+}
+
+#submenu li {
+  float: none;
+  width: 100%;
+}
+
+#submenu a:hover {
+  background: #DF4B05;
+}
+
+#submenu a {
+  background-color:#000000;
+}
+
+.btn {
+  border-radius: 3px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid transparent;
+  color: #fff;
+  padding: 6px 10px;
+}
+
+.btn-primary {
+  background-color: #3c8dbc;
+  border-color: #367fa9;
+}
+
+.btn-favorite {
+  background-color: #dd4b39;
+  border-color: #d73925;
+}
