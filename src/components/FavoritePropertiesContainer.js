@@ -46,11 +46,25 @@ class FavoritePropertiesContainer extends Component {
       });
   }
 
+  addToFavorites = (propertie) => {
+    const { favorites } = Object.assign(this.state);
+    const favoriteFound = favorites.some(item => item.id === propertie.id);
+
+    if (!favoriteFound) {
+      favorites.push(propertie);
+    }
+
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    
+    const newState = { favorites: favorites };
+    this.setState(newState);
+  }
+
   render(){
     return (
       <FavoriteProperties 
         properties={ this.state.properties }
-        page={ this.state.page_atual } />
+        addToFavorites={ this.addToFavorites } />
     );
   }
 }

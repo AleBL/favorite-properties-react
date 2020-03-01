@@ -13,6 +13,8 @@ const Propertie = (props) => {
       <a>
         <img src={`${ props.propertie.default_image["200x140"] }`} alt={ props.propertie.name } />
       </a>
+
+      <button className="btn-small btn-primary" onClick={ (e)=> props.addToFavorites(props.propertie) }> + </button>
     </div>
   )
 }

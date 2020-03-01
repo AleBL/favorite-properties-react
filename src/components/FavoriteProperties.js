@@ -6,7 +6,7 @@ const FavoriteProperties = (props) => {
     <Fragment>
       <PropertieList
         properties={ props.properties }
-      />
+        addToFavorites={ props.addToFavorites } />
 
       <b>{ props.page }</b>
     </Fragment>

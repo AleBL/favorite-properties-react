@@ -9,7 +9,9 @@ class PropertieList extends Component {
           this.props.properties.map(propertie => (
             <Propertie 
               key={ propertie.id }
-              propertie={ propertie }/>
+              propertie={ propertie }
+              addToFavorites={ this.props.addToFavorites } />
+
           ))
         }
       </Fragment>
