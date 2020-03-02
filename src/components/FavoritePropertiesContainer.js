@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from "react"
 import FavoriteProperties from "./FavoriteProperties.js"
 import Pagination from "./Pagination.js"
+import FavoritesContainer from "./FavoritesContainer.js"
 import requestPage from "../util/apiConnection"
+import "../css/pagination.css"
 
 class FavoritePropertiesContainer extends Component {
   constructor(props) {
@@ -11,7 +13,8 @@ class FavoritePropertiesContainer extends Component {
       properties: [],
       current_page: 0,
       total_pages: 0,
-      favorites: []
+      favorites: [],
+      showProperties: true
     };
   }
   
@@ -85,20 +88,50 @@ class FavoritePropertiesContainer extends Component {
     this.verifyFavorites();
   }
 
-  render(){
-    return (
-      <Fragment>
-        <FavoriteProperties 
-          properties={ this.state.properties }
-          addToFavorites={ this.addToFavorites } />
+  changePageRender = () => {
+    let { showProperties } = Object.assign(this.state);
+    showProperties = !showProperties;
 
-        <Pagination
-          currentPage={ this.state.current_page }
-          totalPages={ this.state.total_pages }
-          loadPage={ this.loadPage }
-        />
-      </Fragment>
-    );
+    const newState = { showProperties: showProperties };
+    this.setState(newState);
+  }
+
+  render(){
+    if(this.state.showProperties){
+      return (
+        <Fragment>
+          <FavoriteProperties 
+            properties={ this.state.properties }
+            addToFavorites={ this.addToFavorites } />
+
+          <Pagination
+            currentPage={ this.state.current_page }
+            totalPages={ this.state.total_pages }
+            loadPage={ this.loadPage }
+          />
+
+          <div className="pagination">
+            <button className="button" onClick={ ()=> this.changePageRender() }>
+              Show Favorites 
+            </button>
+          </div>
+        </Fragment>
+      );
+    } else {
+      return (
+        <Fragment>
+          <FavoritesContainer
+            favorites={ this.state.favorites }
+            addToFavorites={ this.addToFavorites } />
+
+          <div className="pagination">
+            <button className="button" onClick={ ()=> this.changePageRender() }>
+              Show Properties 
+            </button>
+          </div>
+        </Fragment>
+      );
+    }
   }
 }
 
