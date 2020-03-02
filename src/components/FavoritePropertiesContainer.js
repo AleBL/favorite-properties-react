@@ -77,7 +77,7 @@ class FavoritePropertiesContainer extends Component {
     if (!favoriteFound) {
       favorites.push(property);
     } else {
-      favorites = favorites.filter(item => item.id != property.id);
+      favorites = favorites.filter(item => item.id !== property.id);
     }
 
     localStorage.setItem('favorites', JSON.stringify(favorites));
