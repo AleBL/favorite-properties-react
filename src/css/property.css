@@ -8,6 +8,11 @@
   background-color: #e6faff;
 }
 
+.containerButtons {
+  display: grid;
+  grid-auto-flow: column;
+}
+
 .dropdownmenu {
   display: flow-root;
   background: #30A6E6;
