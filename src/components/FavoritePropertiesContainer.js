@@ -3,7 +3,6 @@ import FavoriteProperties from "./FavoriteProperties.js"
 import Pagination from "./Pagination.js"
 import requestPage from "../util/apiConnection"
 
-
 class FavoritePropertiesContainer extends Component {
   constructor(props) {
     super(props);
@@ -54,8 +53,8 @@ class FavoritePropertiesContainer extends Component {
   }
 
   verifyFavorites = () => {
-    let { properties } = Object.assign(this.state);
-    let { favorites } = Object.assign(this.state);
+    const { properties } = Object.assign(this.state);
+    const { favorites } = Object.assign(this.state);
 
     properties.forEach(function myFunction(property) {
       const [item, ...rest] = favorites.filter(item => item.id === property.id);
@@ -69,11 +68,13 @@ class FavoritePropertiesContainer extends Component {
   }
 
   addToFavorites = (property) => {
-    const { favorites } = Object.assign(this.state);
+    let { favorites } = Object.assign(this.state);
     const favoriteFound = favorites.some(item => item.id === property.id);
 
     if (!favoriteFound) {
       favorites.push(property);
+    } else {
+      favorites = favorites.filter(item => item.id != property.id);
     }
 
     localStorage.setItem('favorites', JSON.stringify(favorites));
