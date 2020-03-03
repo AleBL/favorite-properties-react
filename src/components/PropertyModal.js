@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import Map from './Map.js';
 import util from "../util/util"
 import "../css/propertyModal.css"
 import "../css/property.css"
@@ -45,8 +46,8 @@ class PropertyModal extends Component {
                         + ", " + property.address.area + ", " + property.address.city + " - " + property.address.state}</b>
 
           <hr/>
-          <b>Description: { property.description }</b>
-
+          <textarea readOnly style={{resize: 'none'}} rows="5"
+            value={"Description: " + property.description} />
         </div>
 
         <div className="actions">
