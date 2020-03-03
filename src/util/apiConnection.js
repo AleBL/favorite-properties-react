@@ -1,5 +1,4 @@
-const baseApiPath = "https://www.orulo.com.br/api/v2/buildings/";
-const bearerToken = "<ADD BEARER TOKEN HERE>";
+import { baseApiPath, bearerToken } from '../util/constants'
 
 const requestParams = {
   uri: baseApiPath,
