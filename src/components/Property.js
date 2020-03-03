@@ -1,5 +1,6 @@
 import React from "react"
 import PropertyModal from "./PropertyModal.js"
+import ModalImage from "react-modal-image";
 import util from "../util/util"
 import "../css/property.css"
 
@@ -12,9 +13,14 @@ const Property = (props) => {
       <b>{ util.formatCurrencyBRL(props.property.min_price) }</b>
       <b>{ props.property.address.city + props.property.address.state }</b>
 
-      <a>
-        <img src={`${ props.property.default_image["200x140"] }`} alt={ props.property.name } />
-      </a>
+      <div>
+        <ModalImage
+          small={ props.property.default_image["200x140"] }
+          large={ props.property.default_image["520x280"] }
+          hideDownload={ true }
+          alt={ props.property.name }
+        />
+      </div>
 
       <div className="containerButtons">
         <button className={ classBtnFavorite } onClick={ (e)=> props.addToFavorites(props.property) }> 

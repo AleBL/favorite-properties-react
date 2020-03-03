@@ -8,6 +8,7 @@
     "google-map-react": "^1.1.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-modal-image": "^2.5.0",
     "react-scripts": "3.3.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
