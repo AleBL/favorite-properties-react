@@ -48,6 +48,11 @@ class PropertyModal extends Component {
           <hr/>
           <textarea readOnly style={{resize: 'none'}} rows="5"
             value={"Description: " + property.description} />
+            
+          <Map 
+            propertyName={ property.name }
+            latitude={ property.address.latitude }
+            longitude={ property.address.longitude } />
         </div>
 
         <div className="actions">
