@@ -12,6 +12,13 @@ body {
           align-items: center;
 }
 
+textarea {
+  background: #eee;
+  display: -webkit-box;
+  resize: none;
+  font-weight: bold;
+}
+
 .modal {
   width: 500px;
   background: white;
