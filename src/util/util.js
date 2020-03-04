@@ -12,7 +12,7 @@ export default {
   },
 
   mountArrayPages: function (currentPage, totalPages) {
-    const arrayNumberPages = [...Array(totalPages).keys()];
+    const arrayNumberPages = [...Array(totalPages + 1).keys()];
     let arrayPages = [];
 
     //Remove Page Zero

@@ -96,6 +96,20 @@ class FavoritePropertiesContainer extends Component {
     this.setState(newState);
   }
 
+  changePageButton = (array, text) => {
+    if(array.length <= 0) {
+      return <Fragment />;
+    }
+
+    return <div className="pagination" title={ text }>
+            <button className="button" onClick={ ()=> this.changePageRender() }>
+              { text }
+            </button>
+          </div>;
+  }
+
+  
+
   render(){
     if(this.state.showProperties){
       return (
@@ -110,11 +124,7 @@ class FavoritePropertiesContainer extends Component {
             loadPage={ this.loadPage }
           />
 
-          <div className="pagination">
-            <button className="button" onClick={ ()=> this.changePageRender() }>
-              Show Favorites 
-            </button>
-          </div>
+          { this.changePageButton(this.state.favorites, "Show Favorites") }
         </Fragment>
       );
     } else {
@@ -124,11 +134,7 @@ class FavoritePropertiesContainer extends Component {
             favorites={ this.state.favorites }
             addToFavorites={ this.addToFavorites } />
 
-          <div className="pagination">
-            <button className="button" onClick={ ()=> this.changePageRender() }>
-              Show Properties 
-            </button>
-          </div>
+          { this.changePageButton(this.state.properties, "Show Properties") }
         </Fragment>
       );
     }
