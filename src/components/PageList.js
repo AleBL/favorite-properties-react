@@ -1,13 +1,16 @@
 import React, { Component, Fragment } from "react"
 import Page from "./Page"
+import util from "../util/util"
 
 class PageList extends Component {
   render() {
+    const arrayPages = util.mountArrayPages(this.props.currentPage, this.props.totalPages);
+
     return (
       <Fragment>
         <div className='pagination'>
           {
-            [...Array(this.props.totalPages).keys()].map(number => (
+            arrayPages.map(number => (
               <Page  
                 key={ "page-" + number }
                 pageNumber={ number }
