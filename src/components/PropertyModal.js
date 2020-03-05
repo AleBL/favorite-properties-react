@@ -24,7 +24,7 @@ class PropertyModal extends Component {
   render() {
     if(!this.state.showModal){
       return (
-        <button className="btn btn-primary" onClick={ this.showModal }>
+        <button className="btn btn-primary" onClick={ this.showModal.bind(this) }>
             Details
         </button>
       );
@@ -56,7 +56,7 @@ class PropertyModal extends Component {
         </div>
 
         <div className="actions">
-          <button className="toggle-button" onClick={ this.hideModal }>OK</button>
+          <button className="toggle-button" onClick={ this.hideModal.bind(this) }>OK</button>
         </div>
       </div>
     );
