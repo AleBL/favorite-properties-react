@@ -13,11 +13,11 @@ class PropertyModal extends Component {
     };
   }
   
-  showModal = () => {
+  showModal () {
     this.setState({ showModal: true });
   };
 
-  hideModal = () => {
+  hideModal () {
     this.setState({ showModal: false });
   };
 
