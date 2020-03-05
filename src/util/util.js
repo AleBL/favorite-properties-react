@@ -4,7 +4,7 @@ export default {
   },
 
   interval: function (num1, num2, unit = "") {
-    if (num1 == num2){
+    if (num1 === num2){
       return num1 + unit;
     }
 
@@ -18,7 +18,7 @@ export default {
     //Remove Page Zero
     arrayNumberPages.shift();
 
-    arrayNumberPages.map(pageNumber => {
+    arrayNumberPages.forEach(pageNumber => {
       if (pageNumber === 1 || pageNumber === totalPages 
         || (pageNumber >= currentPage - 2 && pageNumber <= currentPage + 2)
         || (pageNumber >= totalPages - 2 && pageNumber <= totalPages + 2)) {
