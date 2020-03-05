@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react"
-import FavoriteProperties from "./FavoriteProperties.js"
-import Pagination from "./Pagination.js"
-import FavoritesContainer from "./FavoritesContainer.js"
+import PropertyList from "./PropertyList"
+import Pagination from "./Pagination"
+import FavoritesContainer from "./FavoritesContainer"
 import requestPage from "../util/apiConnection"
 import "../css/pagination.css"
 
@@ -11,8 +11,8 @@ class FavoritePropertiesContainer extends Component {
 
     this.state = {
       properties: [],
-      current_page: 0,
-      total_pages: 0,
+      currentPage: 0,
+      totalPages: 0,
       favorites: [],
       showProperties: true
     };
@@ -30,8 +30,8 @@ class FavoritePropertiesContainer extends Component {
     .then(function (result) {
       const newState = {
         properties: result.buildings,
-        current_page: result.page,
-        total_pages: result.total_pages
+        currentPage: result.page,
+        totalPages: result.total_pages
       };
       
       currentComponent.setState(newState);
@@ -59,8 +59,8 @@ class FavoritePropertiesContainer extends Component {
     const { properties } = Object.assign(this.state);
     const { favorites } = Object.assign(this.state);
 
-    properties.forEach(function myFunction(property) {
-      const [item, ...rest] = favorites.filter(item => item.id === property.id);
+    properties.forEach(property => {
+      const [item] = favorites.filter(item => item.id === property.id);
 
       const index = properties.indexOf(property);
       properties[index].favorite = item ? true : false;
@@ -101,11 +101,11 @@ class FavoritePropertiesContainer extends Component {
       return <Fragment />;
     }
 
-    return <div className="pagination" title={ text }>
-            <button className="button" onClick={ ()=> this.changePageRender() }>
-              { text }
-            </button>
-          </div>;
+    return  <div className="pagination" title={ text }>
+              <button className="button" onClick={ ()=> this.changePageRender() }>
+                { text }
+              </button>
+            </div>;
   }
 
   
@@ -114,15 +114,14 @@ class FavoritePropertiesContainer extends Component {
     if(this.state.showProperties){
       return (
         <Fragment>
-          <FavoriteProperties 
+          <PropertyList
             properties={ this.state.properties }
             addToFavorites={ this.addToFavorites } />
 
           <Pagination
-            currentPage={ this.state.current_page }
-            totalPages={ this.state.total_pages }
-            loadPage={ this.loadPage }
-          />
+            currentPage={ this.state.currentPage }
+            totalPages={ this.state.totalPages }
+            loadPage={ this.loadPage } />
 
           { this.changePageButton(this.state.favorites, "Show Favorites") }
         </Fragment>
