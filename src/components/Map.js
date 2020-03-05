@@ -18,6 +18,7 @@ const Map = (props) => {
     disableDefaultUI: true,
     mapTypeControl: true,
     streetViewControl: true,
+    fullscreenControl: true,
     styles: [{ 
       featureType: 'poi', 
       elementType: 'labels', 
